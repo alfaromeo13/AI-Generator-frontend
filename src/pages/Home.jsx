@@ -1,4 +1,4 @@
-import { Heading, Text, Box } from '@chakra-ui/react'
+import { Heading, Text, Box, Input, IconButton } from '@chakra-ui/react'
  
 export function Home(){
 
@@ -22,6 +22,7 @@ export function Home(){
             <Box sx={boxStyles}>
                 Placeholder lorem ipsum
             </Box>
+            <Input placeholder='Search here.....'></Input> <IconButton icon="{<Mic/>}"></IconButton>
         </div>
     )
 }
