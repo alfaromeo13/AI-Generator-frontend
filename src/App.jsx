@@ -6,7 +6,9 @@ import { NotFound } from './pages/NotFound'
 
 import './App.css'
 
-function App() {
+function App(
+  
+) {
 
   return (
     <Routes>
