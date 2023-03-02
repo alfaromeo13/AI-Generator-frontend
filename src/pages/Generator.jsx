@@ -12,7 +12,7 @@ export function Generator(){
 
     const fetchServerData = async () => {
         try {
-        const response = await axios.get('http://localhost:5000/data');
+        const response = await axios.get('http://localhost:5000/data'); // Receive Data from Server
         setServerData(response.data);
         } catch (error) {
         console.error(error);
@@ -44,7 +44,7 @@ export function Generator(){
         }
 
         setTranscription(finalTranscription);
-        sendTranscription(finalTranscription); // send transcription to Flask server
+        sendTranscription(finalTranscription); // send transcription to server
     };
 
     recognition.onerror = (event) => {
@@ -78,8 +78,7 @@ export function Generator(){
             <div className="content w-8/12 m-52 z-50">
                 <form>
                     <div className="flex bg-white/40 w-full py-6 px-12 border-2 border-white/30 rounded-full">
-                        <input className="text-3xl bg-transparent flex-grow" placeholder="Type your prompt, or click the mic to start speaking" required />
-                        {/* {transcription} */}
+                        <input className="text-3xl bg-transparent flex-grow" defaultValue={transcription } placeholder="Type your prompt, or click the mic to start speaking" required />
                         <span className="flex items-center">
                             <button onClick={startTranscription}>
                                 <Microphone size={50} color="#9AA1AD" />
