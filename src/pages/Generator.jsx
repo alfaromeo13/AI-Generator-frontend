@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { Heading, Text, Box, Input, IconButton, Button, Container } from '@chakra-ui/react'
- 
+import Logo from "../components/Logo" 
+import LogoutBtn from "../components/LogoutBtn"
+
 export function Generator(){
 
     const boxStyles = {
@@ -82,12 +83,26 @@ export function Generator(){
 
     return (
         <>
+        <div className="flex overflow-x-hidden bg-generator bg-cover min-h-screen flex justify-center">
+            <Logo/>
+            <LogoutBtn/>
+            <div className="content w-8/12 m-52 z-50">
+                <form>
+                    <div>
+                        <input className="text-3xl bg-white/40 w-full py-6 px-12 my-2 border-2 border-white/30 rounded-full" placeholder="Type your prompt, or click the mic to start speaking" required />
+                    </div>
+                    <div className="bg-white/40 border-2 border-white/30 h-[40rem] mt-10 rounded-[40px]">
+                        {serverData}
+                    </div> 
+                </form>
+            </div>
+        </div>
             <main className="h-screen m-36 absolute opening-section">
                 <div style={boxStyles}>
                     {transcription}
                 </div>
                 <button onClick={startTranscription}>Push To Talk</button>
-                <div m={20}>Output data: {serverData}</div>
+                {/* <div m={20}>Output data: {serverData}</div> */}
             </main> 
         </>
         
