@@ -92,6 +92,7 @@ export function Generator(){
                 </div> 
             </div>
         </div>
+        
             {/* <main className="h-screen m-36 absolute opening-section">
                 <div>
                     {transcription}
