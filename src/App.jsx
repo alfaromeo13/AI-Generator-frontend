@@ -16,7 +16,7 @@ function App(
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/generator" element={<Generator/>}/>
-      <Route path="/login" element={<Login/>}/>
+      <Route path="/signin" element={<Login/>}/>
       <Route path="/placeholder" element={<Placeholder/>}/>
       <Route path="/*" element={<NotFound/>}/>
     </Routes>
