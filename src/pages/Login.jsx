@@ -20,7 +20,10 @@ export function Login(){
                     <div>
                         <input type="password" className="bg-white/70 w-full py-4 px-8 my-2 border-2 border-white/50 rounded-full" placeholder="Password" required />
                     </div> 
-                    <button type="submit" className="bg-lavender w-full py-4 px-8 my-4 text-xl text-white rounded-full drop-shadow-2xl">Sign In</button>
+                    {/* <button type="submit" className="bg-lavender w-full py-4 px-8 my-4 text-xl text-white rounded-full drop-shadow-2xl">Sign In</button> */}
+                    <div className="bg-lavender w-full py-4 px-8 my-4 text-xl text-center text-white rounded-full drop-shadow-2xl">
+                        <Link to="/generator">Sign In</Link>
+                    </div>
                 </form>
             </div>
         </div>
