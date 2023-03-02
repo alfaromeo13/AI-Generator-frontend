@@ -2,21 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Logo from "../components/Logo" 
 import LogoutBtn from "../components/LogoutBtn"
+import { Microphone } from "phosphor-react";
+
 
 export function Generator(){
-
-    const boxStyles = {
-        padding: "10px",
-        backgrond: "#f0f1f2",
-        margin: "10px",
-        color: "black",
-        textAlign: "center",
-        filter: 'blur(2px)',
-        ':hover': {
-            color: "white",
-            bg: "purple.400"
-        }
-    }
 
     const [transcription, setTranscription] = useState('');
     const [serverData, setServerData] = useState('');
@@ -88,22 +77,28 @@ export function Generator(){
             <LogoutBtn/>
             <div className="content w-8/12 m-52 z-50">
                 <form>
-                    <div>
-                        <input className="text-3xl bg-white/40 w-full py-6 px-12 my-2 border-2 border-white/30 rounded-full" placeholder="Type your prompt, or click the mic to start speaking" required />
+                    <div className="flex bg-white/40 w-full py-6 px-12 border-2 border-white/30 rounded-full">
+                        <input className="text-3xl bg-transparent flex-grow" placeholder="Type your prompt, or click the mic to start speaking" required />
+                        {/* {transcription} */}
+                        <span className="flex items-center">
+                            <button onClick={startTranscription}>
+                                <Microphone size={50} color="#9AA1AD" />
+                            </button>
+                        </span>
                     </div>
-                    <div className="bg-white/40 border-2 border-white/30 h-[40rem] mt-10 rounded-[40px]">
-                        {serverData}
-                    </div> 
                 </form>
+                <div className="bg-white/40 border-2 border-white/30 h-[40rem] mt-10 rounded-[40px]">
+                    {serverData}
+                </div> 
             </div>
         </div>
-            <main className="h-screen m-36 absolute opening-section">
-                <div style={boxStyles}>
+            {/* <main className="h-screen m-36 absolute opening-section">
+                <div>
                     {transcription}
                 </div>
                 <button onClick={startTranscription}>Push To Talk</button>
-                {/* <div m={20}>Output data: {serverData}</div> */}
-            </main> 
+                <div m={20}>Output data: {serverData}</div>
+            </main>  */}
         </>
         
     )
