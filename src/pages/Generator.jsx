@@ -91,9 +91,9 @@ export function Generator(){
                         </div>
                      </form>
                 <div className="flex justify-between mt-10">
-                        <button onClick={() => sendTranscription('generate_image')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Image</button>
-                        <button onClick={() => sendTranscription('generate_ad_text')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Ad Text</button>
-                        <button onClick={() => sendTranscription('generate_website')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Website</button>
+                     {/*  <button onClick={() => sendTranscription('generate_image')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Image</button>
+                          <button onClick={() => sendTranscription('generate_ad_text')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Ad Text</button>
+                         <button onClick={() => sendTranscription('generate_website')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Website</button> */}
                  </div>
             </div>
          </div>
