@@ -12,7 +12,7 @@ export function Generator(){
 
     const fetchServerData = async () => {
         try {
-        const response = await axios.get('http://localhost:5000/data'); // Receive Data from Server
+        const response = await axios.get('https://deep-dream-backend.onrender.com/api'); // Receive Data from Server
         setServerData(response.data);
         } catch (error) {
         console.error(error);
@@ -61,7 +61,7 @@ export function Generator(){
 
     const sendTranscription = async (transcription) => {
         try {
-        const response = await axios.post('http://localhost:5000/transcription', {
+        const response = await axios.post('https://deep-dream-backend.onrender.com/api', {
             transcription: transcription
         });
         console.log(response);

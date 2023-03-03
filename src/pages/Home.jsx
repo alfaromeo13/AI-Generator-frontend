@@ -9,7 +9,7 @@ export function Home(){
             <video src={GradientBg} autoPlay loop muted className="absolute" style={{minHeight: "100vh", width: "100vw", position: "absolute", objectFit: "cover", zIndex: "-1"}}/>
             <Logo/>
             <LoginBtn/>
-            <div className="fixed w-[60rem] h-[42rem] right-28 bottom-[4rem] bg-white/30 backdrop-blur-2xl z-0"></div>
+            <div className="fixed w-[60rem] h-[36rem] right-28 bottom-[4rem] bg-white/30 backdrop-blur-2xl z-0"></div>
             <div className="fixed w-[18rem] h-[24rem] right-[41rem] bottom-[10rem] bg-white/40 backdrop-blur-2xl z-0 rounded-[3rem]"></div>
             <div className="fixed w-[24rem] h-[16rem] right-[14rem] top-[14rem] bg-white/40 backdrop-blur-2xl z-0 rounded-[3rem]"></div>
             <div className="fixed w-[32rem] h-[20rem] right-[6rem] top-[33rem] bg-white/40 backdrop-blur-2xl z-0 rounded-[3rem]"></div>
