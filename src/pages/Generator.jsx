@@ -5,19 +5,38 @@ import LogoutBtn from "../components/LogoutBtn"
 import { Microphone } from "phosphor-react";
 
 
+
 export function Generator(){
 
-   const [transcription, setTranscription] = useState('');
-    const [serverData, setServerData] = useState('');
+    const [transcription, setTranscription] = useState('');
+    const [serverData, setServerData] = useState({ type: 'text' });
+
 
     const fetchServerData = async () => {
         try {
-        const response = await axios.get('https://openai-flask.mohamedbasueny.repl.co'); // Receive Data from Server
-        setServerData(response.data);
+          const response = await axios.get('https://openai-flask.mohamedbasueny.repl.co/');
+          const responseData = response.data;
+          let generatedData = null;
+      
+          if (responseData.type === 'text') {
+            generatedData = responseData.generated_text;
+          } else if (responseData.type === 'image') {
+            generatedData = <img src={responseData.image_url} alt="Generated Image" />;
+          } else if (responseData.type === 'website') {
+            generatedData = (
+              <div>
+                <a href={responseData.generated_HTML_and_CSS_URL} target="_blank" rel="noreferrer">
+                  Click here to view generated website
+                </a>
+              </div>
+            );
+          }
+      
+          setServerData(generatedData);
         } catch (error) {
-        console.error(error);
+          console.error(error);
         }
-    };
+      };
 
     useEffect(() => {
         fetchServerData();
@@ -44,6 +63,7 @@ export function Generator(){
         }
 
         setTranscription(finalTranscription);
+        sendTranscription(finalTranscription); // send transcription to server
     };
 
     recognition.onerror = (event) => {
@@ -57,48 +77,77 @@ export function Generator(){
     const stopTranscription = () => {
         recognition.stop();
     };
-
-    const sendTranscription = async (endpoint) => {
+    const sendTranscription = async (transcription) => {
         try {
-            const response = await axios.post(`https://openai-flask.mohamedbasueny.repl.co/${endpoint}`, {
-                prompt: transcription
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+            let type = '';
+    
+            if (serverData && serverData.type === 'text') {
+                type = 'text';
+            } else if (serverData && serverData.type === 'image') {
+                type = 'image';
+            } else if (serverData && serverData.type === 'logo') {
+                type = 'logo';
+            } else if (serverData && serverData.type === 'website') {
+                type = 'website';
+            }
+            
+            const response = await axios.post(`https://openai-flask.mohamedbasueny.repl.co/generate_website`, {
+                prompt: transcription,
+                type: 'text',
             });
+            
             console.log(response);
-            setServerData(response.data);
         } catch (error) {
             console.error(error);
         }
     };
-
     return (
         <>
-            <div className="flex overflow-x-hidden bg-generator bg-cover min-h-screen flex justify-center">
-                    <Logo/>
-                    <LogoutBtn/>
-                <div className="content w-8/12 m-52 z-50">
-                    <form>
-                        <div className="flex bg-white/40 w-full py-6 px-12 border-2 border-white/30 rounded-full">
-                            <input className="text-3xl bg-transparent flex-grow" defaultValue={transcription } placeholder="Type your prompt, or click the mic to start speaking" required />
-                            <span className="flex items-center">
-                                <button onClick={startTranscription}>
-                                     <Microphone size={50} color="#9AA1AD" />
-                                </button>
-                            </span>
+        <div className="flex overflow-x-hidden bg-generator bg-cover min-h-screen flex justify-center">
+            <Logo/>
+            <LogoutBtn/>
+            <div className="content w-8/12 m-52 z-50">
+                <form>
+                    <div className="flex bg-white/40 w-full py-6 px-12 border-2 border-white/30 rounded-full">
+                        <input className="text-3xl bg-transparent flex-grow" defaultValue={transcription } placeholder="Type your prompt, or click the mic to start speaking" required />
+                        <span className="flex items-center">
+                            <button onClick={startTranscription}>
+                                <Microphone size={50} color="#9AA1AD" />
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <div className="bg-white/40 border-2 text-blue-600 text-xl border-white/30 h-[40rem] mt-10 rounded-[40px]">
+                    {serverData && (
+                        <>
+                        {serverData.type === 'text' && <p>{serverData.generated_text}</p>}
+                        {serverData.type === 'image' && (
+                            <img src={serverData.image_url} alt="Generated Image" />
+                        )}
+                        {serverData.type === 'website' && (
+                            <div>
+                                
+                            <a href={serverData.generated_HTML_and_CSS_URL} target="_blank" rel="noreferrer">
+                                Click here to view generated website
+                            </a>
+                            </div>
+                        )}
+                        </>
+                    )}
+                                </div>
                         </div>
-                     </form>
-                <div className="flex justify-between mt-10">
-                     {/*  <button onClick={() => sendTranscription('generate_image')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Image</button>
-                          <button onClick={() => sendTranscription('generate_ad_text')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Ad Text</button>
-                         <button onClick={() => sendTranscription('generate_website')} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">Generate Website</button> */}
-                 </div>
-            </div>
-         </div>
-        </>
-);
-}
+                    </div>
+                    
+                        {/* <main className="h-screen m-36 absolute opening-section">
+                            <div>
+                                {transcription}
+                            </div>
+                            <button onClick={startTranscription}>Push To Talk</button>
+                            <div m={20}>Output data: {serverData}</div>
+                        </main>  */}
+                    </>
+                    
+                )
+            }
 
-export default Generator;
+    export default Generator;
