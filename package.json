@@ -2,6 +2,7 @@
   "name": "ai-generator-frontend",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://mira-app.onrender.com",
   "type": "module",
   "scripts": {
     "dev": "vite",
