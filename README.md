@@ -21,12 +21,10 @@ This repository is part of a larger project that consists of three separate GitH
 
 The frontend design repository (AI-Generator-frontend) communicates with two separate backend repositories, each of which is built with a different technology stack.
 
-The first backend repository is a NodeJS backend hosted on GitHub at:
-- https://github.com/labonzique/deepdream_backend_webserver
+The first backend repository is a NodeJS backend hosted <a href="https://github.com/labonzique/deepdream_backend_webserver">here</a>.
 This backend provides a powerful and flexible platform for generating unique and exciting art using deep learning technologies.
 
-The second backend repository is a Flask backend hosted on GitHub at:
-- https://github.com/alfaromeo13/AI-Generator-backend.
+The second backend repository is a Flask backend hosted <a href="https://github.com/alfaromeo13/AI-Generator-backend">here</a>.
 This backend is built with the Flask framework and provides a user-friendly and intuitive API for generating art.
 
 Together, these three repositories provide a complete end-to-end solution for generating art using Artificial Intelligence technologies. Our frontend design repository (AI-Generator-frontend) is the central point of interaction for users, and provides a seamless and intuitive interface for generating art.
